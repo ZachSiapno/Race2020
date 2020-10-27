@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE59E2202548529000E732E2 /* CarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59E21F2548529000E732E2 /* CarImageView.swift */; };
 		EE6854362546FF5900295F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6854352546FF5900295F41 /* AppDelegate.swift */; };
 		EE6854382546FF5900295F41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6854372546FF5900295F41 /* SceneDelegate.swift */; };
 		EE68543A2546FF5900295F41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6854392546FF5900295F41 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE59E21F2548529000E732E2 /* CarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageView.swift; sourceTree = "<group>"; };
 		EE6854322546FF5900295F41 /* Race2020.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Race2020.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6854352546FF5900295F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE6854372546FF5900295F41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				EE6854372546FF5900295F41 /* SceneDelegate.swift */,
 				EE6854392546FF5900295F41 /* ViewController.swift */,
 				EE6854492546FF9E00295F41 /* Car.swift */,
+				EE59E21F2548529000E732E2 /* CarImageView.swift */,
 				EE68543B2546FF5900295F41 /* Main.storyboard */,
 				EE68543E2546FF6000295F41 /* Assets.xcassets */,
 				EE6854402546FF6000295F41 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 				EE68543A2546FF5900295F41 /* ViewController.swift in Sources */,
 				EE6854362546FF5900295F41 /* AppDelegate.swift in Sources */,
 				EE68544A2546FF9E00295F41 /* Car.swift in Sources */,
+				EE59E2202548529000E732E2 /* CarImageView.swift in Sources */,
 				EE6854382546FF5900295F41 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
