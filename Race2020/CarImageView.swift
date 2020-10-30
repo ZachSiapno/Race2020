@@ -16,7 +16,7 @@ class CarImageView: UIImageView
     init(c: Car)
     {
         car = c
-        super.init(image: UIImage(named: "A"))
+        super.init(image: UIImage(named: car.name))
         
         let height = UIScreen.main.bounds.height
         self.frame = CGRect(x: 75 * car.lane, y: Int(height) - 100, width: 50, height: 100)
