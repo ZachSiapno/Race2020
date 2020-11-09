@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE4112022558A0DF000C6412 /* WinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4112012558A0DF000C6412 /* WinVC.swift */; };
+		EE50FC34255483550084E2B4 /* PredictionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50FC33255483550084E2B4 /* PredictionVC.swift */; };
 		EE59E2202548529000E732E2 /* CarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59E21F2548529000E732E2 /* CarImageView.swift */; };
 		EE6854362546FF5900295F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6854352546FF5900295F41 /* AppDelegate.swift */; };
 		EE6854382546FF5900295F41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6854372546FF5900295F41 /* SceneDelegate.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE4112012558A0DF000C6412 /* WinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinVC.swift; sourceTree = "<group>"; };
+		EE50FC33255483550084E2B4 /* PredictionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionVC.swift; sourceTree = "<group>"; };
 		EE59E21F2548529000E732E2 /* CarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageView.swift; sourceTree = "<group>"; };
 		EE6854322546FF5900295F41 /* Race2020.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Race2020.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6854352546FF5900295F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +69,9 @@
 				EE6854392546FF5900295F41 /* ViewController.swift */,
 				EE6854492546FF9E00295F41 /* Car.swift */,
 				EE59E21F2548529000E732E2 /* CarImageView.swift */,
+				EE50FC33255483550084E2B4 /* PredictionVC.swift */,
 				EE68543B2546FF5900295F41 /* Main.storyboard */,
+				EE4112012558A0DF000C6412 /* WinVC.swift */,
 				EE68543E2546FF6000295F41 /* Assets.xcassets */,
 				EE6854402546FF6000295F41 /* LaunchScreen.storyboard */,
 				EE6854432546FF6000295F41 /* Info.plist */,
@@ -146,7 +152,9 @@
 			files = (
 				EE68543A2546FF5900295F41 /* ViewController.swift in Sources */,
 				EE6854362546FF5900295F41 /* AppDelegate.swift in Sources */,
+				EE4112022558A0DF000C6412 /* WinVC.swift in Sources */,
 				EE68544A2546FF9E00295F41 /* Car.swift in Sources */,
+				EE50FC34255483550084E2B4 /* PredictionVC.swift in Sources */,
 				EE59E2202548529000E732E2 /* CarImageView.swift in Sources */,
 				EE6854382546FF5900295F41 /* SceneDelegate.swift in Sources */,
 			);

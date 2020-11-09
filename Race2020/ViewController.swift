@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let vc = WinVC(nibName: "WinVC", bundle: nil)
 
     @IBOutlet weak var firstPlaceLabel: UILabel!
     @IBOutlet weak var secondPlaceLabel: UILabel!
@@ -20,12 +21,23 @@ class ViewController: UIViewController {
     var car3ImageView: CarImageView!
     var car4ImageView: CarImageView!
     
+    var grayWin = 0
+    var blueWin = 0
+    var greenWin = 0
+    var orangeWin = 0
+    
+    var rightCount = 0
+    var wrongCount = 0
+    
+    var prediction = ""
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        vc.previousVC = self
         
         // create the car
-        var car1 = Car(theName: "A", theLane: 1, theSpeed: 3.2)
+        let car1 = Car(theName: "A", theLane: 1, theSpeed: 3.2)
         
         // create the car imageView
         car1ImageView = CarImageView(c: car1)
@@ -34,15 +46,15 @@ class ViewController: UIViewController {
         view.addSubview(car1ImageView)
         
         
-        var car2 = Car(theName: "B", theLane: 2, theSpeed: 3.2)
+        let car2 = Car(theName: "B", theLane: 2, theSpeed: 3.2)
         car2ImageView = CarImageView(c: car2)
         view.addSubview(car2ImageView)
         
-        var car3 = Car(theName: "C", theLane: 3, theSpeed: 3.2)
+        let car3 = Car(theName: "C", theLane: 3, theSpeed: 3.2)
         car3ImageView = CarImageView(c: car3)
         view.addSubview(car3ImageView)
         
-        var car4 = Car(theName: "D", theLane: 4, theSpeed: 3.2)
+        let car4 = Car(theName: "D", theLane: 4, theSpeed: 3.2)
         car4ImageView = CarImageView(c: car4)
         view.addSubview(car4ImageView)
         
@@ -56,42 +68,36 @@ class ViewController: UIViewController {
 
     }
     
-    func winnerAlert(winner: String) {
-        if winner == "Gray" {
-            let alert = UIAlertController(title: "The Gray Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-            let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-                    print("User Tapped on OK")
-                    
-            }
+    func predictionAlert(winner: String, prediction: String) {
+        if prediction == winner {
+            let alert = UIAlertController(title: "Your Prediction is Right", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "Nice!", style: .default)
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
+            
+            rightCount += 1
+        } else {
+            let alert = UIAlertController(title: "Your Prediction is Wrong", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let ok = UIAlertAction(title: "Lame!", style: .default)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+            
+            wrongCount += 1
+        }
+    }
+    
+    func winner(winner: String) {
+        if winner == "Gray" {
+            grayWin += 1
         }
         if winner == "Blue" {
-            let alert = UIAlertController(title: "The Blue Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-            let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-                    print("User Tapped on OK")
-                    
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            blueWin += 1
         }
         if winner == "Green" {
-            let alert = UIAlertController(title: "The Green Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-            let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-                    print("User Tapped on OK")
-                    
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            greenWin += 1
         }
         if winner == "Orange" {
-            let alert = UIAlertController(title: "The Orange Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-            let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-                    print("User Tapped on OK")
-                    
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            orangeWin += 1
         }
     }
 
@@ -146,34 +152,8 @@ class ViewController: UIViewController {
                 self.thirdPlaceLabel.text = "Third Place: Gray"
             } else {
                 self.fourthPlaceLabel.text = "Fourth Place: Gray"
-                self.winnerAlert(winner: winner)
-//                if winner == "Blue" {
-//                    let alert = UIAlertController(title: "The Blue Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//                if winner == "Green" {
-//                    let alert = UIAlertController(title: "The Green Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//                if winner == "Orange" {
-//                    let alert = UIAlertController(title: "The Orange Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
+                self.winner(winner: winner)
+                self.predictionAlert(winner: winner, prediction: self.prediction)
             }
             self.car1ImageView.resetPositionAndSpeed()
         
@@ -193,35 +173,8 @@ class ViewController: UIViewController {
                     self.thirdPlaceLabel.text = "Third Place: Blue"
                 } else {
                     self.fourthPlaceLabel.text = "Fourth Place: Blue"
-                    self.winnerAlert(winner: winner)
-                    
-//                    if winner == "Gray" {
-//                        let alert = UIAlertController(title: "The Gray Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                        let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                                print("User Tapped on OK")
-//
-//                        }
-//                        alert.addAction(ok)
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
-//                    if winner == "Green" {
-//                        let alert = UIAlertController(title: "The Green Car wins the race!!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                        let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                                print("User Tapped on OK")
-//
-//                        }
-//                        alert.addAction(ok)
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
-//                    if winner == "Orange" {
-//                        let alert = UIAlertController(title: "The Orange Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                        let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                                print("User Tapped on OK")
-//
-//                        }
-//                        alert.addAction(ok)
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
+                    self.winner(winner: winner)
+                    self.predictionAlert(winner: winner, prediction: self.prediction)
                 }
                 self.car2ImageView.resetPositionAndSpeed()
                })
@@ -240,35 +193,8 @@ class ViewController: UIViewController {
                 self.thirdPlaceLabel.text = "Third Place: Green"
             } else {
                 self.fourthPlaceLabel.text = "Fourth Place: Green"
-                self.winnerAlert(winner: winner)
-                
-//                if winner == "Gray" {
-//                    let alert = UIAlertController(title: "The Gray Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//                if winner == "Blue" {
-//                    let alert = UIAlertController(title: "The Blue Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//                if winner == "Orange" {
-//                    let alert = UIAlertController(title: "The Orange Car wins the race!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
+                self.winner(winner: winner)
+                self.predictionAlert(winner: winner, prediction: self.prediction)
             }
                 self.car3ImageView.resetPositionAndSpeed()
         })
@@ -287,36 +213,9 @@ class ViewController: UIViewController {
                 self.thirdPlaceLabel.text = "Third Place: Orange"
             } else {
                 self.fourthPlaceLabel.text = "Fourth Place: Orange"
-                self.winnerAlert(winner: winner)
+                self.winner(winner: winner)
+                self.predictionAlert(winner: winner, prediction: self.prediction)
                 
-//                if winner == "Gray" {
-//                    let alert = UIAlertController(title: "The Gray Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//                            
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                    
-//                }
-//                if winner == "Blue" {
-//                    let alert = UIAlertController(title: "The Blue Car was first!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//                            
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//                if winner == "Green" {
-//                    let alert = UIAlertController(title: "The Green Car wins the race!!", message: nil, preferredStyle: UIAlertController.Style.alert)
-//                    let ok = UIAlertAction(title: "Nice!", style: .default) { (action) in
-//                            print("User Tapped on OK")
-//                            
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
             }
                 self.car4ImageView.resetPositionAndSpeed()
         })
@@ -333,7 +232,30 @@ class ViewController: UIViewController {
         fourthPlaceLabel.text = ""
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WinSegue"
+        {
+            let confirm = segue.destination as? WinVC
+            
+            confirm?.myGrayText = "\(grayWin)"
+            confirm?.myBlueText = "\(blueWin)"
+            confirm?.myGreenText = "\(greenWin)"
+            confirm?.myOrangeText = "\(orangeWin)"
+            
+            confirm?.myRightText = "\(rightCount)"
+            confirm?.myWrongText = "\(wrongCount)"
+        }
+    }
     
+    func resetScores() {
+        grayWin = 0
+        blueWin = 0
+        greenWin = 0
+        orangeWin = 0
+        
+        rightCount = 0
+        wrongCount = 0
+    }
     
 
 }
